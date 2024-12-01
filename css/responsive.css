@@ -1,0 +1,225 @@
+@media (max-width: 992px) {
+    /* Navbar adjustments */
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .d-flex.align-items-center.ms-auto {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Sidebar adjustments */
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar a span {
+        display: none;
+    }
+
+    .sidebar.collapsed i {
+        font-size: 1.5rem;
+    }
+
+    /* Main content */
+    @media (max-width: 768px) {
+        .main-content {
+            margin-left: 0; /* Reset margin */
+            padding: 20px; /* Add consistent padding for mobile view */
+            width: 100%; /* Ensure it spans the full width of the viewport */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+    
+        .container-fluid {
+            padding-left: 0 !important; /* Remove default Bootstrap padding */
+            padding-right: 0 !important; /* Remove default Bootstrap padding */
+        }
+    }
+
+    #calendar {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.2rem;
+    }
+
+    .quick-actions, .recent-invoices, .pet-health-overview {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack navbar items */
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Adjust main content and widgets */
+    .main-content {
+        margin-left: 0;
+    }
+
+    .quick-actions button {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Stack carousel items */
+    .pet-carousel-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pet-card {
+        flex: 0 0 100px;
+        margin: 5px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .navbar-brand {
+        display: none; /* Hides the logo and text in the navbar */
+    }
+}
+
+@media (max-width: 768px) {
+    #profileDropdown span {
+        display: none; /* Hides the name */
+    }
+
+    #profileDropdown i {
+        margin-left: 0; /* Adjust spacing for the dropdown icon */
+    }
+}
+
+/* Responsive styling for notification and user profile */
+@media (max-width: 768px) {
+    .d-flex.align-items-center.ms-auto {
+        flex-direction: row; /* Keep elements in a single row */
+        justify-content: flex-end; /* Align items to the right */
+        align-items: center; /* Vertically align items */
+        gap: 10px; /* Add spacing between notification and profile dropdown */
+    }
+
+    .notification-container {
+        display: flex;
+        align-items: center; /* Vertically align the badge with the bell */
+        position: relative;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 50%;
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        font-weight: bold;
+    }
+
+    #profileDropdown {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #profileDropdown span {
+        display: none; /* Hide the username in mobile view */
+    }
+
+    .profile-image {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .dropdown-menu {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+
+    /* Align dropdown menu properly in mobile */
+    .notification-menu,
+    .profile-dropdown {
+        min-width: 200px;
+    }
+}
+
+
+@media (max-width: 576px) {
+    /* Align toolbar layout */
+    .fc-header-toolbar {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    /* Navigation Buttons (Prev/Next) */
+    .fc-prev-button,
+    .fc-next-button {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+
+    /* Month Title Font Adjustment */
+    .fc-toolbar-title {
+        font-size: 0.9rem; /* Smaller font size for mobile */
+        margin: 0 10px; /* Adjust spacing */
+        font-weight: bold; /* Optional: Keep it readable */
+        text-align: center;
+    }
+
+    /* Hide unnecessary buttons on mobile */
+    .fc-today-button,
+    .fc-dayGridMonth-button,
+    .fc-timeGridWeek-button,
+    .fc-timeGridDay-button {
+        display: none !important;
+    }
+}
+/* Sidebar specific for mobile POV */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed; /* Sidebar overlaps content */
+        top: 60px; /* Below the navbar */
+        left: -250px; /* Hidden by default */
+        width: 250px; /* Fixed width */
+        height: calc(100vh - 60px); /* Full height minus navbar */
+        transition: left 0.3s ease; /* Smooth slide-in effect */
+        background-color: #ffffff; /* Ensure it's distinct */
+        z-index: 1050; /* Stays above main content */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        border-right: none; /* Remove white line */
+    }
+
+    .sidebar.expanded {
+        left: 0; /* Visible when toggled */
+    }
+
+    /* Main content remains static */
+    .main-content {
+        margin-left: 0; /* No shifting */
+    }
+
+    /* Navbar toggle button always on top */
+    .navbar-toggler {
+        z-index: 1100; /* Ensure it's above sidebar */
+    }
+}
+

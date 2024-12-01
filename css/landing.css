@@ -1,0 +1,247 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+}
+
+.hero-section {
+    background-color: #e8f5e9;
+    color: #000;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+}
+
+.hero-image img {
+    max-height: 500px;
+}
+
+.btn-success {
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: 5px; /* Adds a pill-shaped look */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-success:hover {
+    background-color: #218838; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+.navbar-nav .nav-link {
+    font-weight: bold; /* Makes the text bold */
+    color: #333; /* Default color */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth hover transition */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #28a745; /* Green color on hover */
+    transform: scale(1.05); /* Slightly enlarges on hover */
+    text-decoration: none; /* Removes underline */
+}
+
+.navbar-nav .dropdown-toggle::after {
+    transition: transform 0.3s ease; /* Smooth transition for dropdown arrow */
+}
+
+.navbar-nav .dropdown-toggle:hover::after {
+    transform: rotate(180deg); /* Rotates arrow on hover */
+}
+.navbar-nav .nav-item {
+    margin-right: 1.5rem; /* Adjust spacing as needed */
+}
+
+
+/*service part*/
+
+.services {
+    background-color: #f8f9fa; /* Light background */
+    color: #333;
+}
+
+.service-card {
+    background: #fff; /* White background for cards */
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px); /* Lifts the card slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow on hover */
+}
+
+.service-icon img {
+    margin: auto;
+    display: block;
+}
+
+
+/* testimonial section*/
+.testimonials {
+    background-color: #e8f5e9; /* Light green background */
+    color: #333; /* Dark text for contrast */
+}
+
+.testimonials img {
+    height: 400px; /* Fixed height for images */
+    object-fit: cover; /* Ensures images maintain aspect ratio */
+    border: 2px solid #ddd; /* Light border for images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 40px;
+    width: 40px;
+    background-size: 100%; /* Adjust icon size */
+}
+
+.carousel-control-prev-icon.bg-success,
+.carousel-control-next-icon.bg-success {
+    filter: invert(1); /* Makes arrows white on green background */
+}
+
+.testimonials h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #28a745; /* Matches theme */
+}
+
+/* branches section */
+
+.locations {
+    background-color: #f8f9fa; /* Light background */
+    color: #333;
+}
+
+.location-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures even height */
+    height: 100%;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.location-icon img {
+    display: block;
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+}
+
+/* footer section*/
+.footer {
+    background-color: #28a745; /* Green background */
+    color: #fff; /* White text */
+}
+
+.footer h6 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.footer ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+.footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #d4f2d2; /* Light green on hover */
+}
+
+.footer img {
+    width: 80px; /* Logo size */
+}
+
+.footer p {
+    margin-bottom: 0; /* Remove margin for proper alignment */
+}
+
+.footer hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.footer .bi {
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .bi:hover {
+    transform: scale(1.1);
+    color: #d4f2d2; /* Light green on hover */
+}
+
+/* login section */
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.input-group input {
+    border: 1px solid #ddd;
+}
+
+.btn-success {
+    background-color: #28a745;;
+    border-color: #28a745;
+}
+/* create account section */
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.input-group input,
+.form-control,
+.form-select {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+
+
+
+
+
+
+
+
