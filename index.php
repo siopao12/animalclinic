@@ -1,3 +1,29 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: landing.php"); // Redirect to login or landing page if not logged in
+    exit();
+}
+include 'config.php'; // Database connection file
+
+// Fetch all services from the service_logs table
+$sql = "SELECT service_type, description FROM service_logs";
+$result = $conn->query($sql);
+
+// Group services for carousel slides
+$services = [];
+while ($row = $result->fetch_assoc()) {
+    $services[] = $row;
+}
+
+// Split services into chunks of 4 (for each carousel slide)
+$chunkedServices = array_chunk($services, 4);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,94 +41,7 @@
 <body>
 <!--Nv-->
 <?php include 'navbar.php';?>
-<!-- Add Your Clinic Modal -->
-<div class="modal fade" id="addClinicModal" tabindex="-1" aria-labelledby="addClinicModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header  bg-success text-white">
-                <h5 class="modal-title fw-bold" id="addClinicModalLabel">Add Your Clinic</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <!-- Modal Body -->
-            <form>
-            <div class="modal-body">
-                <!-- Facility Information -->
-                <h6 class="fw-bold mb-3 text-success">Animal Facility Information</h6>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Facility Name">
-                    </div>
-                    <div class="col-md-6">
-                        <select id="region" class="form-select">
-                            <option value="" selected>Region</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row g-2 mt-2">
-                    <div class="col-md-6">
-                        <select id="province" class="form-select">
-                            <option value="" selected>Province</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <select id="city" class="form-select">
-                            <option value="" selected>City</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row g-2 mt-2">
-                    <div class="col-md-4">
-                        <select id="barangay" class="form-select">
-                            <option value="" selected>Barangay</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" id="municipality" placeholder="Municipality">
-                    </div>
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Mobile Number">
-                    </div>
-                </div>
-                <div class="row g-2 mt-2">
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Building Number">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Block">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Lot Number">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Street">
-                    </div>
-                </div>
-                <div class="row g-2 mt-2">
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Sitio">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Subdivision">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" placeholder="Village">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="email" class="form-control" placeholder="Email Address">
-                    </div>
-                </div>
-            </div>
-
-                <!-- Submit Button -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<?php include 'modals.php';?>
  <!-- Sidebar -->
  <div id="sidebar" class="sidebar collapsed p-0">
     <ul>
@@ -144,66 +83,8 @@
         </li>
     </ul>
 </div>
-<!-- Main Content -->
-<div id="dashboardSection" class="main-content container-fluid g-0" >
-    <div class="container-fluid">
-        <h1 class="text-center text-md-start mt-5 mt-md-3">Welcome to Paw's Doctor Dashboard</h1>
-        <p class="text-center text-md-start">Manage your appointments, services, and more from here.</p>
 
-        <!-- My Pets Section -->
-        <div class="row my-4">
-            <div class="col-12">
-                <div class="my-pets-section">
-                    <h4 class="section-title text-center text-md-start">MY PETS</h4>
-                    <div class="pet-carousel-container d-flex flex-column align-items-center">
-                        <!-- Carousel Controls -->
-                        <div class="d-flex w-100 justify-content-between align-items-center">
-                            <button class="carousel-control-prev btn btn-outline-secondary" id="prevPet">
-                                <i class="bi bi-chevron-left"></i>
-                            </button>
-                            <div class="pet-carousel overflow-hidden flex-grow-1">
-                                <div class="pet-carousel-items d-flex justify-content-start" id="petsContainer">
-                                    <!-- Individual Pet Cards -->
-                                    <div class="pet-card">
-                                        <img src="image/dog1.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2" >View Details</button>
-                                    </div>
-                                    <div class="pet-card">
-                                        <img src="image/pet.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2">View Details</button>
-                                    </div>
-                                    <div class="pet-card">
-                                        <img src="image/pet.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2">View Details</button>
-                                    </div>
-                                    <div class="pet-card">
-                                        <img src="image/pet.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2">View Details</button>
-                                    </div>
-                                    <div class="pet-card">
-                                        <img src="image/pet.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2">View Details</button>
-                                    </div>
-                                    <div class="pet-card">
-                                        <img src="image/pet.jpg" alt="Blacky">
-                                        <p>Blacky</p>
-                                        <button class="btn btn-success btn-sm mt-2">View Details</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-next btn btn-outline-secondary" id="nextPet">
-                                <i class="bi bi-chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<?php include 'petcoursel.php'; ?>
 
         <!-- Calendar Section -->
         <div class="row">

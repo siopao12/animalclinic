@@ -41,7 +41,11 @@
             <div class="dropdown">
                 <a href="#" class="d-flex align-items-center text-decoration-none" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="image/gerald.jpg" alt="Profile Picture" class="profile-image me-2" width="30" height="30">
-                    <span class="fw-bold text-dark d-none d-md-inline">Gerald Seprado</span>
+                    <?php
+                    // Fetch the username from the session
+                    $userName = isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest';
+                    ?>
+                    <span class="fw-bold text-dark d-none d-md-inline"><?php echo $userName; ?></span>
                     <i class="bi bi-chevron-down ms-1"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end profile-dropdown" aria-labelledby="profileDropdown">
@@ -62,7 +66,7 @@
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item"  href="logout.php">
                             <i class="bi bi-box-arrow-right me-2"></i> Logout
                         </a>
                     </li>

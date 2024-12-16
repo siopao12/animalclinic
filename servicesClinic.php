@@ -1,101 +1,100 @@
 
 
-    <!-- Content for Services & Clinic -->
-    <div class="col-12">
-        <div class="my-services-section p-4 rounded shadow" style="background-color: #f1faf1;">
-            <h4 class="section-title text-center text-success fw-bold">OFFERED SERVICES</h4>
-            <div id="servicesCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- First Carousel Slide -->
+<div class="col-12">
+    <div class="my-services-section p-4 rounded shadow" style="background-color: #f1faf1;">
+        <h4 class="section-title text-center text-success fw-bold">OFFERED SERVICES</h4>
+        <div id="servicesCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php if (!empty($chunkedServices)): ?>
+                    <?php foreach ($chunkedServices as $index => $serviceGroup): ?>
+                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                            <div class="row justify-content-center g-3">
+                                <?php foreach ($serviceGroup as $service): ?>
+                                    <div class="col-md-3">
+                                        <div class="card h-100 shadow-sm border-0">
+                                            <div class="card-body">
+                                                <h5 class="card-title text-success fw-bold">
+                                                    <?php echo htmlspecialchars($service['service_type']); ?>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <?php echo htmlspecialchars($service['description']); ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <div class="carousel-item active">
                         <div class="row justify-content-center g-3">
-                            <!-- Service Cards -->
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Check Up and Medical Test</h5>
-                                        <p class="card-text">If your pets are behaving unwell such as medical issues, please bring them to the clinic.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Deworming</h5>
-                                        <p class="card-text">Regular deworming is needed for your pets to stay healthy and rid of intestinal parasites.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Vaccines</h5>
-                                        <p class="card-text">Vaccinate your pets to protect them from unwanted yet preventable diseases such as parvovirus and distemper.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Grooming</h5>
-                                        <p class="card-text">Cut-off time is at 2 PM. Bring your pets for their much-needed grooming and cleaning. Call for an appointment.</p>
-                                    </div>
-                                </div>
+                            <div class="col-md-12 text-center">
+                                <p class="text-muted">No services available at the moment.</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Second Carousel Slide -->
-                    <div class="carousel-item">
-                        <div class="row justify-content-center g-3">
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Pet Accessories</h5>
-                                        <p class="card-text">We have many sorts of pet accessories from toys to bowls, leashes to clothes.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Emergencies</h5>
-                                        <p class="card-text">We cater to emergencies after regular clinic hours. No need to call or send a PM on that page. We have an in-house vet.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Home Service</h5>
-                                        <p class="card-text">Depending on the vet's availability, they can visit your house for deworming and vaccinations.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-success fw-bold">Advice on Responsible Pet Ownership</h5>
-                                        <p class="card-text">Learn how to be a good and informed owner. You can always ask us for advice on how to keep your pets and family healthy.</p>
-                                    </div>
-                                </div>
-                            </div>
+                <?php endif; ?>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+<!-- Available Clinics Section -->
+<div class="col-12 mt-4">
+    <div class="my-clinics-section p-4 rounded shadow" style="background-color: #f1faf1;">
+        <h4 class="section-title text-center text-success fw-bold">AVAILABLE CLINICS</h4>
+        <div class="row justify-content-center g-3 mt-4">
+            <!-- Clinic Card 1 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="image/clinic.jpg" class="card-img-top" alt="Paw's Doctor Toril Branch">
+                    <div class="card-body">
+                        <h5 class="card-title text-success fw-bold">Paw's Doctor Toril Branch</h5>
+                        <p class="card-text">Address: 3QG4+6M6, Beside Mercury Drugstore, Mintal, Tugbok, Davao City, Davao del Sur</p>
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="#" class="text-success"><i class="bi bi-telephone-fill"></i> Call</a>
+                            <a href="#" class="text-success"><i class="bi bi-geo-alt-fill"></i> Directions</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Carousel Navigation Buttons -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" style="filter: invert(100%);"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#servicesCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" style="filter: invert(100%);"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
             </div>
-            <p class="mt-3 text-muted">
-                Note: Please contact your clinic to confirm if they offer your preferred services.
-            </p>
+            <!-- Clinic Card 2 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="clinic_image.png" class="card-img-top" alt="Paw's Doctor Toril Branch">
+                    <div class="card-body">
+                        <h5 class="card-title text-success fw-bold">Paw's Doctor Toril Branch</h5>
+                        <p class="card-text">Address: 3QG4+6M6, Beside Mercury Drugstore, Mintal, Tugbok, Davao City, Davao del Sur</p>
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="#" class="text-success"><i class="bi bi-telephone-fill"></i> Inquiries</a>
+                            <a href="#" class="text-success"><i class="bi bi-geo-alt-fill"></i> Directions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Clinic Card 3 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="clinic_image.png" class="card-img-top" alt="Paw's Doctor Toril Branch">
+                    <div class="card-body">
+                        <h5 class="card-title text-success fw-bold">Paw's Doctor Toril Branch</h5>
+                        <p class="card-text">Address: 3QG4+6M6, Beside Mercury Drugstore, Mintal, Tugbok, Davao City, Davao del Sur</p>
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="#" class="text-success"><i class="bi bi-telephone-fill"></i> Inquiries</a>
+                            <a href="#" class="text-success"><i class="bi bi-geo-alt-fill"></i> Directions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>

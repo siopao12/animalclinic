@@ -49,3 +49,40 @@ document.getElementById('toggleConfirmPassword').addEventListener('click', funct
 });
 
 
+// managing the required field and checking the password if its match
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('createAccountForm');
+        const password = document.getElementById('Thirdpassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+
+        form.addEventListener('submit', function (event) {
+            // Check if the form is valid
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            // Check if passwords match
+            if (password.value !== confirmPassword.value) {
+                event.preventDefault();
+                event.stopPropagation();
+                confirmPassword.setCustomValidity("Passwords do not match");
+                confirmPassword.classList.add('is-invalid');
+            } else {
+                confirmPassword.setCustomValidity(""); // Clear error
+                confirmPassword.classList.remove('is-invalid');
+            }
+
+            form.classList.add('was-validated');
+        });
+
+        // Reset error message on input
+        confirmPassword.addEventListener('input', function () {
+            if (password.value === confirmPassword.value) {
+                confirmPassword.setCustomValidity("");
+                confirmPassword.classList.remove('is-invalid');
+            }
+        });
+    });
+
+
